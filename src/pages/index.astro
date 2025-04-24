@@ -1,0 +1,212 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import FeatureSection from '../components/FeatureSection.astro';
+import MenuCategory from '../components/MenuCategory.astro';
+import LocationCard from '../components/LocationCard.astro';
+
+// Sample data for featured menu items
+const featuredItems = [
+  {
+    name: "Combination Soon Tofu",
+    description: "Our signature silky soft tofu stew with a mix of seafood, beef, and vegetables in a spicy broth. Served with stone pot rice.",
+    price: "$15.95",
+    image: "https://images.pexels.com/photos/5339079/pexels-photo-5339079.jpeg?auto=compress&cs=tinysrgb&w=800",
+    spicy: true,
+    popular: true
+  },
+  {
+    name: "Seafood Soon Tofu",
+    description: "Silky soft tofu stew with shrimp, clams, and mussels in a spicy seafood broth. Served with stone pot rice.",
+    price: "$15.95",
+    image: "https://images.pexels.com/photos/6037599/pexels-photo-6037599.jpeg?auto=compress&cs=tinysrgb&w=800",
+    spicy: true
+  },
+  {
+    name: "Bibimbap Stone Pot",
+    description: "Mixed rice bowl with assorted vegetables, beef, and fried egg, served in a sizzling stone pot with gochujang sauce.",
+    price: "$18.20",
+    image: "https://images.pexels.com/photos/5900742/pexels-photo-5900742.jpeg?auto=compress&cs=tinysrgb&w=800",
+    popular: true
+  },
+  {
+    name: "Bulgogi",
+    description: "Thinly sliced marinated beef, stir-fried with onions and vegetables. Served with steamed rice.",
+    price: "$19.50",
+    image: "https://images.pexels.com/photos/6646233/pexels-photo-6646233.jpeg?auto=compress&cs=tinysrgb&w=800"
+  }
+];
+
+// Sample data for featured locations
+const featuredLocations = [
+  {
+    name: "Bloor & Christie",
+    address: "691 Bloor St W, Toronto, ON",
+    phone: "(416) 537-0972",
+    mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2886.1623668334195!2d-79.42494732342147!3d43.66441937119546!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x882b346a59fbc63f%3A0x16c22c9b305f316a!2s691%20Bloor%20St%20W%2C%20Toronto%2C%20ON%20M6G%201L2!5e0!3m2!1sen!2sca!4v1715116418444!5m2!1sen!2sca",
+    id: "bloor-christie"
+  },
+  {
+    name: "Yonge & Finch",
+    address: "5445 Yonge St, North York, ON",
+    phone: "(647) 430-7458",
+    mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2880.2968587574747!2d-79.41779682341496!3d43.77836167109686!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x882b2d76f55c9b97%3A0x901e3892b0b69ee8!2s5445%20Yonge%20St%2C%20North%20York%2C%20ON%20M2N%205S1!5e0!3m2!1sen!2sca!4v1715116467347!5m2!1sen!2sca",
+    id: "yonge-finch"
+  }
+];
+
+// Features data
+const features = [
+  {
+    title: "Authentic Korean Cuisine",
+    description: "Experience the true flavors of Korea with our traditional recipes passed down through generations.",
+    icon: "dish"
+  },
+  {
+    title: "Multiple Locations",
+    description: "Visit us at any of our 5 convenient locations throughout the Greater Toronto Area.",
+    icon: "location"
+  },
+  {
+    title: "Order Online",
+    description: "Can't dine in? Order through Uber Eats or SkipTheDishes for delivery right to your door.",
+    icon: "delivery"
+  }
+];
+---
+
+<Layout 
+  title="Home" 
+  description="Buk Chang Dong Soon Tofu - Authentic Korean Restaurant specializing in Soon Tofu and traditional Korean cuisine in Toronto and GTA."
+  ogImage="/images/restaurant-exterior.jpg"
+>
+  <!-- Hero Section -->
+  <Hero 
+    title="Authentic Korean Cuisine" 
+    subtitle="Experience the rich flavors of Korea's famous Soon Tofu and traditional dishes"
+    imageUrl="https://images.pexels.com/photos/2347311/pexels-photo-2347311.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+    buttonText="View Our Menu"
+    buttonUrl="/menu"
+  />
+  
+  <!-- Features Section -->
+  <FeatureSection 
+    title="Why Choose Buk Chang Dong Soon Tofu"
+    features={features}
+  />
+  
+  <!-- Featured Menu Section -->
+  <section class="py-12 md:py-16">
+    <div class="container mx-auto px-4 md:px-6">
+      <div class="text-center mb-10">
+        <h2 class="text-3xl md:text-4xl font-bold text-neutral-800 mb-4">Our Popular Dishes</h2>
+        <p class="text-neutral-600 max-w-3xl mx-auto">Experience our signature Soon Tofu and traditional Korean dishes that have made us famous throughout Toronto.</p>
+      </div>
+      
+      <MenuCategory 
+        title=""
+        items={featuredItems}
+      />
+      
+      <div class="text-center mt-8">
+        <a 
+          href="/menu" 
+          class="inline-block bg-primary-500 hover:bg-primary-600 text-white font-medium px-6 py-3 rounded-md transition transform hover:scale-105"
+        >
+          View Full Menu
+        </a>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Locations Section -->
+  <section class="py-12 md:py-16 bg-neutral-50">
+    <div class="container mx-auto px-4 md:px-6">
+      <div class="text-center mb-10">
+        <h2 class="text-3xl md:text-4xl font-bold text-neutral-800 mb-4">Visit Us</h2>
+        <p class="text-neutral-600 max-w-3xl mx-auto">We have multiple locations throughout the Greater Toronto Area. Find the one nearest to you.</p>
+      </div>
+      
+      <div class="grid md:grid-cols-2 gap-6">
+        {featuredLocations.map(location => (
+          <LocationCard 
+            name={location.name}
+            address={location.address}
+            phone={location.phone}
+            mapUrl={location.mapUrl}
+            id={location.id}
+          />
+        ))}
+      </div>
+      
+      <div class="text-center mt-8">
+        <a 
+          href="/locations" 
+          class="inline-block bg-primary-500 hover:bg-primary-600 text-white font-medium px-6 py-3 rounded-md transition transform hover:scale-105"
+        >
+          View All Locations
+        </a>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Testimonial Section -->
+  <section 
+    class="py-12 md:py-16 bg-cover bg-center text-white relative"
+    style="background-image: url('https://images.pexels.com/photos/5949896/pexels-photo-5949896.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');"
+  >
+    <div class="absolute inset-0 bg-neutral-900 opacity-75"></div>
+    
+    <div class="container mx-auto px-4 md:px-6 relative z-10">
+      <div class="max-w-4xl mx-auto text-center">
+        <h2 class="text-3xl md:text-4xl font-bold mb-8">Customer Experience</h2>
+        
+        <div class="bg-neutral-800 bg-opacity-50 p-6 md:p-8 rounded-lg">
+          <p class="text-xl italic mb-6">"The Soon Tofu here is absolutely incredible! The broth is rich and flavorful, and the tofu is silky smooth. It's the most authentic Korean food I've had outside of Korea."</p>
+          <div class="font-semibold">Sarah L., Toronto</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Order Online CTA -->
+  <section class="py-12 md:py-16">
+    <div class="container mx-auto px-4 md:px-6">
+      <div class="bg-primary-500 rounded-lg shadow-xl overflow-hidden">
+        <div class="md:flex">
+          <div class="md:w-1/2 p-8 md:p-12">
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Order Online</h2>
+            <p class="text-white text-lg mb-8">Enjoy our delicious Korean cuisine in the comfort of your home. Order now through our delivery partners.</p>
+            
+            <div class="flex flex-col sm:flex-row gap-4">
+              <a 
+                href="https://ubereats.com" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                class="bg-white hover:bg-neutral-100 text-neutral-800 px-6 py-3 rounded-md font-medium text-center transition"
+              >
+                Uber Eats
+              </a>
+              <a 
+                href="https://skipthedishes.com" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                class="bg-white hover:bg-neutral-100 text-neutral-800 px-6 py-3 rounded-md font-medium text-center transition"
+              >
+                SkipTheDishes
+              </a>
+            </div>
+          </div>
+          
+          <div class="md:w-1/2 relative min-h-[250px]">
+            <img 
+              src="https://images.pexels.com/photos/5836429/pexels-photo-5836429.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
+              alt="Korean food delivery" 
+              class="w-full h-full object-cover"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

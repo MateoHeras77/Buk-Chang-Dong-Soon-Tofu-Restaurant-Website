@@ -1,0 +1,104 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+
+const history = [
+  {
+    year: "2005",
+    title: "Our Beginning",
+    description: "Buk Chang Dong Soon Tofu opened its first location in Toronto, bringing authentic Korean cuisine to the city."
+  },
+  {
+    year: "2010",
+    title: "Expansion Begins",
+    description: "Due to growing popularity, we opened our second location to serve more communities in the GTA."
+  },
+  {
+    year: "2015",
+    title: "A Growing Family",
+    description: "Continued success led to further expansion, with new locations opening across Toronto and surrounding areas."
+  },
+  {
+    year: "Today",
+    title: "Serving the Community",
+    description: "With five locations across the GTA, we continue our commitment to serving authentic Korean cuisine to our valued customers."
+  }
+];
+---
+
+<Layout 
+  title="About Us" 
+  description="Learn about Buk Chang Dong Soon Tofu's history and our commitment to authentic Korean cuisine in Toronto."
+  ogImage="/images/about-hero.jpg"
+>
+  <Hero 
+    title="Our Story" 
+    subtitle="Bringing authentic Korean cuisine to Toronto since 2005"
+    imageUrl="https://images.pexels.com/photos/2347311/pexels-photo-2347311.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+  />
+  
+  <!-- History Timeline -->
+  <section class="py-12 md:py-16">
+    <div class="container mx-auto px-4 md:px-6">
+      <div class="max-w-3xl mx-auto">
+        <h2 class="text-3xl md:text-4xl font-bold text-neutral-800 mb-8 text-center">Our Journey</h2>
+        
+        <div class="space-y-12">
+          {history.map((milestone, index) => (
+            <div class="flex flex-col md:flex-row gap-6">
+              <div class="md:w-1/4">
+                <div class="text-2xl font-bold text-primary-500">{milestone.year}</div>
+              </div>
+              <div class="md:w-3/4">
+                <h3 class="text-xl font-semibold text-neutral-800 mb-2">{milestone.title}</h3>
+                <p class="text-neutral-600">{milestone.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Mission -->
+  <section class="py-12 md:py-16 bg-neutral-50">
+    <div class="container mx-auto px-4 md:px-6">
+      <div class="max-w-3xl mx-auto text-center">
+        <h2 class="text-3xl md:text-4xl font-bold text-neutral-800 mb-6">Our Mission</h2>
+        <p class="text-lg text-neutral-600 mb-8">
+          At Buk Chang Dong Soon Tofu, our mission is to share the authentic flavors of Korean cuisine with our community. We believe in using traditional recipes and high-quality ingredients to create memorable dining experiences for our guests.
+        </p>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Values -->
+  <section class="py-12 md:py-16">
+    <div class="container mx-auto px-4 md:px-6">
+      <h2 class="text-3xl md:text-4xl font-bold text-neutral-800 mb-12 text-center">Our Values</h2>
+      
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="text-center">
+          <h3 class="text-xl font-semibold text-neutral-800 mb-4">Authenticity</h3>
+          <p class="text-neutral-600">
+            We stay true to traditional Korean recipes and cooking methods, ensuring every dish reflects our cultural heritage.
+          </p>
+        </div>
+        
+        <div class="text-center">
+          <h3 class="text-xl font-semibold text-neutral-800 mb-4">Quality</h3>
+          <p class="text-neutral-600">
+            We use only the finest ingredients and maintain high standards in food preparation and service.
+          </p>
+        </div>
+        
+        <div class="text-center">
+          <h3 class="text-xl font-semibold text-neutral-800 mb-4">Community</h3>
+          <p class="text-neutral-600">
+            We're committed to being an active part of our local communities and providing a welcoming environment for all.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

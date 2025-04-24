@@ -1,0 +1,79 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+
+const deliveryPartners = [
+  {
+    name: "Uber Eats",
+    logo: "https://images.pexels.com/photos/6963098/pexels-photo-6963098.jpeg",
+    url: "https://ubereats.com/"
+  },
+  {
+    name: "SkipTheDishes",
+    logo: "https://images.pexels.com/photos/6963098/pexels-photo-6963098.jpeg",
+    url: "https://skipthedishes.com/"
+  }
+];
+---
+
+<Layout 
+  title="Order Online" 
+  description="Order Buk Chang Dong Soon Tofu online for delivery or pickup through our delivery partners."
+  ogImage="/images/order-hero.jpg"
+>
+  <Hero 
+    title="Order Online" 
+    subtitle="Enjoy our authentic Korean cuisine at home"
+    imageUrl="https://images.pexels.com/photos/5836429/pexels-photo-5836429.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+  />
+  
+  <section class="py-12 md:py-16">
+    <div class="container mx-auto px-4 md:px-6">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-3xl md:text-4xl font-bold text-neutral-800 mb-8 text-center">Choose Your Delivery Partner</h2>
+        
+        <div class="grid md:grid-cols-2 gap-8">
+          {deliveryPartners.map(partner => (
+            <a 
+              href={partner.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="block bg-white rounded-lg shadow-md hover:shadow-lg transition overflow-hidden"
+            >
+              <div class="aspect-w-16 aspect-h-9">
+                <img 
+                  src={partner.logo}
+                  alt={`Order through ${partner.name}`}
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <div class="p-6 text-center">
+                <h3 class="text-xl font-semibold text-neutral-800 mb-2">Order with {partner.name}</h3>
+                <p class="text-neutral-600 mb-4">Fast delivery to your door</p>
+                <span class="inline-block bg-primary-500 text-white px-6 py-2 rounded-md">
+                  Order Now
+                </span>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Locations -->
+  <section class="py-12 md:py-16 bg-neutral-50">
+    <div class="container mx-auto px-4 md:px-6 text-center">
+      <h2 class="text-3xl md:text-4xl font-bold text-neutral-800 mb-6">Find a Location</h2>
+      <p class="text-neutral-600 text-lg mb-8">
+        Visit one of our locations across the Greater Toronto Area
+      </p>
+      <a 
+        href="/locations" 
+        class="inline-block bg-primary-500 hover:bg-primary-600 text-white font-medium px-8 py-3 rounded-md transition transform hover:scale-105"
+      >
+        View All Locations
+      </a>
+    </div>
+  </section>
+</Layout>

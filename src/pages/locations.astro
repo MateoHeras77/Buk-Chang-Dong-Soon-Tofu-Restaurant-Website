@@ -1,0 +1,201 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import LocationCard from '../components/LocationCard.astro';
+
+const locations = [
+  {
+    name: "Bloor & Christie",
+    address: "691 Bloor St W, Toronto, ON",
+    phone: "(416) 537-0972",
+    mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2886.1623668334195!2d-79.42494732342147!3d43.66441937119546!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x882b346a59fbc63f%3A0x16c22c9b305f316a!2s691%20Bloor%20St%20W%2C%20Toronto%2C%20ON%20M6G%201L2!5e0!3m2!1sen!2sca!4v1715116418444!5m2!1sen!2sca",
+    id: "bloor-christie",
+    hours: {
+      mon: "11:00 AM - 10:00 PM",
+      tue: "11:00 AM - 10:00 PM",
+      wed: "11:00 AM - 10:00 PM",
+      thu: "11:00 AM - 10:00 PM",
+      fri: "11:00 AM - 11:00 PM",
+      sat: "11:00 AM - 11:00 PM",
+      sun: "11:00 AM - 10:00 PM"
+    }
+  },
+  {
+    name: "Yonge & Finch",
+    address: "5445 Yonge St, North York, ON",
+    phone: "(647) 430-7458",
+    mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2880.2968587574747!2d-79.41779682341496!3d43.77836167109686!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x882b2d76f55c9b97%3A0x901e3892b0b69ee8!2s5445%20Yonge%20St%2C%20North%20York%2C%20ON%20M2N%205S1!5e0!3m2!1sen!2sca!4v1715116467347!5m2!1sen!2sca",
+    id: "yonge-finch",
+    hours: {
+      mon: "11:00 AM - 10:00 PM",
+      tue: "11:00 AM - 10:00 PM",
+      wed: "11:00 AM - 10:00 PM",
+      thu: "11:00 AM - 10:00 PM",
+      fri: "11:00 AM - 11:00 PM",
+      sat: "11:00 AM - 11:00 PM",
+      sun: "11:00 AM - 10:00 PM"
+    }
+  },
+  {
+    name: "Victoria Park & Sheppard",
+    address: "2450 Sheppard Ave E, North York, ON",
+    phone: "(416) 499-1500",
+    mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2881.6544436095837!2d-79.32174382341644!3d43.77613567109686!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89d4d3c6a9b9b9b9%3A0x9b9b9b9b9b9b9b9b!2s2450%20Sheppard%20Ave%20E%2C%20North%20York%2C%20ON%20M2J%205B3!5e0!3m2!1sen!2sca!4v1715116467347!5m2!1sen!2sca",
+    id: "victoria-sheppard",
+    hours: {
+      mon: "11:00 AM - 10:00 PM",
+      tue: "11:00 AM - 10:00 PM",
+      wed: "11:00 AM - 10:00 PM",
+      thu: "11:00 AM - 10:00 PM",
+      fri: "11:00 AM - 11:00 PM",
+      sat: "11:00 AM - 11:00 PM",
+      sun: "11:00 AM - 10:00 PM"
+    }
+  },
+  {
+    name: "Richmond Hill",
+    address: "9737 Yonge St, Richmond Hill, ON",
+    phone: "(905) 237-1009",
+    mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2877.8544436095837!2d-79.43174382341644!3d43.88613567109686!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89d4d3c6a9b9b9b9%3A0x9b9b9b9b9b9b9b9b!2s9737%20Yonge%20St%2C%20Richmond%20Hill%2C%20ON%20L4C%208S7!5e0!3m2!1sen!2sca!4v1715116467347!5m2!1sen!2sca",
+    id: "richmond-hill",
+    hours: {
+      mon: "11:00 AM - 10:00 PM",
+      tue: "11:00 AM - 10:00 PM",
+      wed: "11:00 AM - 10:00 PM",
+      thu: "11:00 AM - 10:00 PM",
+      fri: "11:00 AM - 11:00 PM",
+      sat: "11:00 AM - 11:00 PM",
+      sun: "11:00 AM - 10:00 PM"
+    }
+  },
+  {
+    name: "Mississauga",
+    address: "3085 Hurontario St, Mississauga, ON",
+    phone: "(905) 276-1957",
+    mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2889.8544436095837!2d-79.64174382341644!3d43.58613567109686!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89d4d3c6a9b9b9b9%3A0x9b9b9b9b9b9b9b9b!2s3085%20Hurontario%20St%2C%20Mississauga%2C%20ON%20L5A%204E4!5e0!3m2!1sen!2sca!4v1715116467347!5m2!1sen!2sca",
+    id: "mississauga",
+    hours: {
+      mon: "11:00 AM - 10:00 PM",
+      tue: "11:00 AM - 10:00 PM",
+      wed: "11:00 AM - 10:00 PM",
+      thu: "11:00 AM - 10:00 PM",
+      fri: "11:00 AM - 11:00 PM",
+      sat: "11:00 AM - 11:00 PM",
+      sun: "11:00 AM - 10:00 PM"
+    }
+  }
+];
+---
+
+<Layout 
+  title="Locations" 
+  description="Visit Buk Chang Dong Soon Tofu at our multiple locations across Toronto and the Greater Toronto Area. Find the nearest restaurant to you."
+  ogImage="/images/locations-hero.jpg"
+>
+  <!-- Hero Section -->
+  <Hero 
+    title="Our Locations" 
+    subtitle="Find your nearest Buk Chang Dong Soon Tofu restaurant"
+    imageUrl="https://images.pexels.com/photos/2347311/pexels-photo-2347311.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+  />
+  
+  <!-- Locations Grid -->
+  <section class="py-12 md:py-16">
+    <div class="container mx-auto px-4 md:px-6">
+      <div class="grid md:grid-cols-2 gap-8">
+        {locations.map(location => (
+          <div class="bg-white rounded-lg shadow-md overflow-hidden">
+            <div class="aspect-w-16 aspect-h-9">
+              <iframe 
+                src={location.mapUrl} 
+                width="100%" 
+                height="300" 
+                style="border:0;" 
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade"
+                title={`Map showing ${location.name} location`}
+                class="w-full"
+              ></iframe>
+            </div>
+            
+            <div class="p-6">
+              <h2 class="text-2xl font-bold text-neutral-800 mb-2">{location.name}</h2>
+              <p class="text-neutral-600 mb-4">{location.address}</p>
+              
+              <div class="space-y-4">
+                <!-- Contact -->
+                <div>
+                  <h3 class="text-lg font-semibold text-neutral-800 mb-2">Contact</h3>
+                  <a 
+                    href={`tel:${location.phone.replace(/[^0-9]/g, '')}`} 
+                    class="text-primary-500 hover:text-primary-600 font-medium transition"
+                  >
+                    {location.phone}
+                  </a>
+                </div>
+                
+                <!-- Hours -->
+                <div>
+                  <h3 class="text-lg font-semibold text-neutral-800 mb-2">Hours</h3>
+                  <dl class="grid grid-cols-2 gap-x-4 gap-y-2 text-sm">
+                    <dt class="font-medium text-neutral-600">Monday</dt>
+                    <dd>{location.hours.mon}</dd>
+                    <dt class="font-medium text-neutral-600">Tuesday</dt>
+                    <dd>{location.hours.tue}</dd>
+                    <dt class="font-medium text-neutral-600">Wednesday</dt>
+                    <dd>{location.hours.wed}</dd>
+                    <dt class="font-medium text-neutral-600">Thursday</dt>
+                    <dd>{location.hours.thu}</dd>
+                    <dt class="font-medium text-neutral-600">Friday</dt>
+                    <dd>{location.hours.fri}</dd>
+                    <dt class="font-medium text-neutral-600">Saturday</dt>
+                    <dd>{location.hours.sat}</dd>
+                    <dt class="font-medium text-neutral-600">Sunday</dt>
+                    <dd>{location.hours.sun}</dd>
+                  </dl>
+                </div>
+                
+                <!-- Order Buttons -->
+                <div class="flex flex-col sm:flex-row gap-3 pt-4">
+                  <a 
+                    href="https://ubereats.com" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    class="flex-1 bg-primary-500 hover:bg-primary-600 text-white text-center font-medium px-6 py-3 rounded-md transition"
+                  >
+                    Order on Uber Eats
+                  </a>
+                  <a 
+                    href="https://skipthedishes.com" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    class="flex-1 bg-secondary-500 hover:bg-secondary-600 text-white text-center font-medium px-6 py-3 rounded-md transition"
+                  >
+                    Order on SkipTheDishes
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+  
+  <!-- Contact CTA -->
+  <section class="py-12 md:py-16 bg-neutral-100">
+    <div class="container mx-auto px-4 md:px-6 text-center">
+      <h2 class="text-3xl md:text-4xl font-bold text-neutral-800 mb-4">Questions?</h2>
+      <p class="text-neutral-600 text-lg mb-8 max-w-2xl mx-auto">
+        If you have any questions about our locations or services, we're here to help.
+      </p>
+      <a 
+        href="/contact" 
+        class="inline-block bg-primary-500 hover:bg-primary-600 text-white font-medium px-8 py-3 rounded-md transition transform hover:scale-105"
+      >
+        Contact Us
+      </a>
+    </div>
+  </section>
+</Layout>

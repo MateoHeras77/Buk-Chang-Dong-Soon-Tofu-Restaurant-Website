@@ -1,0 +1,87 @@
+---
+const navLinks = [
+  { name: 'Home', url: '/' },
+  { name: 'Menu', url: '/menu' },
+  { name: 'Locations', url: '/locations' },
+  { name: 'About', url: '/about' },
+  { name: 'Contact', url: '/contact' },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<header class="bg-white shadow-sm sticky top-0 z-50">
+  <div class="container mx-auto px-4 md:px-6">
+    <nav class="flex items-center justify-between h-16 md:h-20">
+      <!-- Logo -->
+      <a href="/" class="flex items-center" aria-label="Buk Chang Dong">
+        <span class="text-xl md:text-2xl font-bold text-primary-500">Buk Chang Dong</span>
+      </a>
+      
+      <!-- Mobile menu button -->
+      <button id="menu-toggle" class="md:hidden p-2 text-neutral-700 hover:text-primary-500 transition" aria-label="Toggle Menu">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+      
+      <!-- Desktop navigation -->
+      <div class="hidden md:flex items-center space-x-6">
+        {navLinks.map(link => (
+          <a 
+            href={link.url} 
+            class={`text-sm font-medium hover:text-primary-500 transition py-2 border-b-2 ${
+              currentPath === link.url || (link.url !== '/' && currentPath.startsWith(link.url)) 
+                ? 'text-primary-500 border-primary-500' 
+                : 'text-neutral-700 border-transparent'
+            }`}
+          >
+            {link.name}
+          </a>
+        ))}
+        <a 
+          href="/order" 
+          class="text-sm font-medium text-white bg-primary-500 hover:bg-primary-600 px-4 py-2 rounded-md transition"
+        >
+          Order Online
+        </a>
+      </div>
+    </nav>
+  </div>
+  
+  <!-- Mobile navigation -->
+  <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-neutral-200">
+    <div class="container mx-auto px-4 py-3 space-y-1">
+      {navLinks.map(link => (
+        <a 
+          href={link.url} 
+          class={`block px-3 py-2 rounded-md ${
+            currentPath === link.url || (link.url !== '/' && currentPath.startsWith(link.url))
+              ? 'text-primary-500 bg-primary-50' 
+              : 'text-neutral-700 hover:bg-neutral-100'
+          }`}
+        >
+          {link.name}
+        </a>
+      ))}
+      <a 
+        href="/order" 
+        class="block px-3 py-2 text-white bg-primary-500 hover:bg-primary-600 rounded-md mt-2"
+      >
+        Order Online
+      </a>
+    </div>
+  </div>
+</header>
+
+<script>
+  // Mobile menu toggle functionality
+  const menuToggle = document.getElementById('menu-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+  
+  if (menuToggle && mobileMenu) {
+    menuToggle.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+  }
+</script>

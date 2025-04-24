@@ -1,0 +1,94 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import ContactForm from '../components/ContactForm.astro';
+
+const contactInfo = {
+  email: "bcdsoontofu@gmail.com",
+  phone: "(416) 537-0972",
+  address: "691 Bloor St W, Toronto, ON"
+};
+---
+
+<Layout 
+  title="Contact Us" 
+  description="Get in touch with Buk Chang Dong Soon Tofu. We're here to answer your questions and hear your feedback."
+  ogImage="/images/contact-hero.jpg"
+>
+  <Hero 
+    title="Contact Us" 
+    subtitle="We'd love to hear from you"
+    imageUrl="https://images.pexels.com/photos/5865196/pexels-photo-5865196.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+  />
+  
+  <section class="py-12 md:py-16">
+    <div class="container mx-auto px-4 md:px-6">
+      <div class="max-w-4xl mx-auto">
+        <div class="grid md:grid-cols-2 gap-8">
+          <!-- Contact Information -->
+          <div>
+            <h2 class="text-2xl font-bold text-neutral-800 mb-6">Get in Touch</h2>
+            
+            <div class="space-y-6">
+              <div>
+                <h3 class="text-lg font-semibold text-neutral-800 mb-2">Email</h3>
+                <a 
+                  href={`mailto:${contactInfo.email}`}
+                  class="text-primary-500 hover:text-primary-600 transition"
+                >
+                  {contactInfo.email}
+                </a>
+              </div>
+              
+              <div>
+                <h3 class="text-lg font-semibold text-neutral-800 mb-2">Phone</h3>
+                <a 
+                  href={`tel:${contactInfo.phone.replace(/[^0-9]/g, '')}`}
+                  class="text-primary-500 hover:text-primary-600 transition"
+                >
+                  {contactInfo.phone}
+                </a>
+              </div>
+              
+              <div>
+                <h3 class="text-lg font-semibold text-neutral-800 mb-2">Main Location</h3>
+                <address class="text-neutral-600 not-italic">
+                  {contactInfo.address}
+                </address>
+              </div>
+              
+              <div>
+                <h3 class="text-lg font-semibold text-neutral-800 mb-2">Follow Us</h3>
+                <div class="flex space-x-4">
+                  <a 
+                    href="https://instagram.com/" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    class="text-neutral-600 hover:text-primary-500 transition"
+                    aria-label="Follow us on Instagram"
+                  >
+                    Instagram
+                  </a>
+                  <a 
+                    href="https://facebook.com/" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    class="text-neutral-600 hover:text-primary-500 transition"
+                    aria-label="Follow us on Facebook"
+                  >
+                    Facebook
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Contact Form -->
+          <div>
+            <ContactForm />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,49 @@
+---
+export interface Props {
+  name: string;
+  address: string;
+  phone: string;
+  mapUrl: string;
+  id: string;
+}
+
+const { name, address, phone, mapUrl, id } = Astro.props;
+---
+
+<div id={id} class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition">
+  <a href={`/locations/${id}`} class="block relative">
+    <div class="aspect-w-16 aspect-h-9 w-full">
+      <iframe 
+        src={mapUrl} 
+        width="100%" 
+        height="200" 
+        style="border:0;" 
+        allowfullscreen="" 
+        loading="lazy" 
+        referrerpolicy="no-referrer-when-downgrade"
+        title={`Map of ${name} location`}
+        class="w-full h-full"
+      ></iframe>
+    </div>
+  </a>
+  <div class="p-5">
+    <h3 class="text-xl font-semibold text-neutral-800 mb-2">{name}</h3>
+    <p class="text-neutral-600 mb-3">{address}</p>
+    <a href={`tel:${phone.replace(/[^0-9]/g, '')}`} class="text-primary-500 font-medium block mb-4">{phone}</a>
+    
+    <div class="flex flex-col sm:flex-row gap-2 mt-4">
+      <a 
+        href={`/locations/${id}`} 
+        class="bg-primary-500 hover:bg-primary-600 text-white text-center font-medium px-4 py-2 rounded transition flex-1"
+      >
+        View Details
+      </a>
+      <a 
+        href="/order" 
+        class="bg-secondary-500 hover:bg-secondary-600 text-white text-center font-medium px-4 py-2 rounded transition flex-1"
+      >
+        Order Online
+      </a>
+    </div>
+  </div>
+</div>

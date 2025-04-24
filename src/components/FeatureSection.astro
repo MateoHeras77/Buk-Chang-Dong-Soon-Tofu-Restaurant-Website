@@ -1,0 +1,49 @@
+---
+export interface Props {
+  title: string;
+  features: Array<{
+    title: string;
+    description: string;
+    icon: string;
+  }>;
+  reverseOrder?: boolean;
+}
+
+const { title, features, reverseOrder = false } = Astro.props;
+---
+
+<section class="py-12 md:py-16 bg-neutral-50">
+  <div class="container mx-auto px-4 md:px-6">
+    <div class="text-center max-w-3xl mx-auto mb-10">
+      <h2 class="text-3xl md:text-4xl font-bold text-neutral-800 mb-4">{title}</h2>
+    </div>
+    
+    <div class={`grid md:grid-cols-3 gap-6 ${reverseOrder ? 'md:flex-row-reverse' : ''}`}>
+      {features.map(feature => (
+        <div class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition">
+          <div class="w-12 h-12 bg-primary-100 rounded-full flex items-center justify-center mb-4 text-primary-500">
+            {feature.icon === 'dish' && (
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+              </svg>
+            )}
+            {feature.icon === 'location' && (
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+            )}
+            {feature.icon === 'delivery' && (
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0" />
+              </svg>
+            )}
+          </div>
+          <h3 class="text-lg font-semibold text-neutral-800 mb-2">{feature.title}</h3>
+          <p class="text-neutral-600">{feature.description}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
